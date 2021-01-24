@@ -1,0 +1,31 @@
+
+<mat-card style="width: 59%;
+    margin: 20%;">
+    <form #cityForm="ngForm" (ngSubmit)="cityForm.valid && addCity(cityForm)">
+        <input style = "width: 99%;" type="text" #cityName="ngModel" [(ngModel)]="adminService.selectedCity.name" name="cityName" placeholder="City Name"
+               required  [ngClass]="{'invalid-textbox' :cityForm.submitted && !cityName.valid }">
+        <div *ngIf="cityForm.submitted && !cityName.valid">
+            <label class="validation-message">This field is required.</label>
+        </div>
+        <input type="text" style = "width: 99%;"  #countryname="ngModel" [(ngModel)]="adminService.selectedCity.country" name="countryname" placeholder="Country Name"
+                required [ngClass]="{'invalid-textbox' :cityForm.submitted && !countryname.valid }">
+        <div *ngIf="cityForm.submitted && countryname.errors">
+            <label *ngIf="countryname.errors.required" class="validation-message">This field is required.</label>
+           </div>
+        <input type="submit" value="Add City" style="margin-left: 33%;">
+    </form>
+
+    <!-- Success message -->
+    <div class="success" *ngIf="showSucessMessage">
+        Saved successfully
+    </div>
+
+    <!-- Error message -->
+    <div class="alert" *ngIf="serverErrorMessages">
+        {{serverErrorMessages}}
+    </div>
+
+    <mat-list role="list" class="custom-scroll-bar">
+        <mat-list-item *ngFor="let item of origins"> {{item.name}}</mat-list-item>
+    </mat-list>
+</mat-card>

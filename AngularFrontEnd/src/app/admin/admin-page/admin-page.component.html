@@ -1,0 +1,48 @@
+<!--<mat-drawer-container class="example-container">-->
+<!--    <mat-drawer mode="side" opened>-->
+<!--        <mat-list>-->
+<!--            <ul>-->
+
+<!--                <li *ngIf="isadminauthenticated">-->
+<!--                    <button  (click)="onCity()" [ngClass]="{-->
+<!--            'positive' : showcities,-->
+<!--            'negative' : !showcities-->
+<!--         }">Cities</button>-->
+<!--                </li>-->
+<!--                <li *ngIf="isadminauthenticated">-->
+<!--                    <button (click)="onFlight()" [ngClass]="{-->
+<!--            'positive' : showflights,-->
+<!--            'negative' : !showflights-->
+<!--         }">Flight</button>-->
+<!--                </li>-->
+<!--            </ul>-->
+
+<!--        </mat-list>-->
+<!--    </mat-drawer>-->
+<!--    <mat-drawer-content>-->
+<!--        <app-cities *ngIf="showcities"></app-cities>-->
+<!--        <app-flights *ngIf="showflights"></app-flights>-->
+<!--    </mat-drawer-content>-->
+<!--</mat-drawer-container>-->
+
+<mat-toolbar color="warn">
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #drawer mode="side" opened role="navigation" style="width:20%;">
+        <mat-nav-list *ngIf="isadminauthenticated">
+            <a mat-list-item  (click)="onCity()" [ngClass]="{
+                            'positive' : showcities,
+                            'negative' : !showcities}">
+                City</a>
+            <a mat-list-item routerLink='/second' (click)="onFlight()" [ngClass]="{
+                             'positive' : showflights,
+                            'negative' : !showflights
+                         }">Flight</a>
+            <a mat-list-item  (click)="onLogout()" >Logout</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-cities *ngIf="showcities"></app-cities>
+        <app-flights *ngIf="showflights"></app-flights>
+    </mat-sidenav-content>
+</mat-sidenav-container>

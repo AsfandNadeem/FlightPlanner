@@ -1,0 +1,31 @@
+
+
+    <form (submit)="onLogin(loginForm)" #loginForm="ngForm" >
+            <input
+                    type="text"
+                    placeholder="admin username"
+                    name="email"
+                    ngModel
+                    #emailInput="ngModel"
+                    required
+
+            >
+        <div *ngIf="loginForm.submitted && !emailInput.valid">
+            <label class="validation-message">This field is required.</label>
+        </div>
+            <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    ngModel
+                    #passwordInput="ngModel"
+                    required
+
+            >
+        <div *ngIf="loginForm.submitted && passwordInput.errors">
+            <label *ngIf="passwordInput.errors.required" class="validation-message">This field is required.</label>
+        </div>
+
+        <input type="submit" value="Login">
+
+    </form>
